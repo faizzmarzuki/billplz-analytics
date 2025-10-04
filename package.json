@@ -38,11 +38,13 @@
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
+    "react-google-charts": "^5.2.1",
     "recharts": "^3.2.1",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^3.1.1"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/node": "^20",
     "@types/react": "^18",
