@@ -5,9 +5,6 @@ export default function PieChart() {
         ["Task", "Hours per Day"],
         ["Work", 11],
         ["Eat", 2],
-        ["Commute", 2],
-        ["Watch TV", 2],
-        ["Sleep", 7],
     ];
 
     const options = {
@@ -27,7 +24,7 @@ export default function PieChart() {
                 fontSize: 14,
             },
         },
-        colors: ["#8AD1C2", "#9F8AD1", "#D18A99", "#BCD18A", "#D1C28A"],
+        colors: ["#3784F4", "#E8E8E8"],
     };
     return (
         <Chart

@@ -1,9 +1,13 @@
 import { CloseIcon } from "@/components/ui/icons/close";
 
-export default function CloseButton() {
+interface CloseButtonProps {
+    onClick?: () => void;
+}
+
+export default function CloseButton({ onClick }: CloseButtonProps) {
     return (
-        <div className="bg-neutral-950 rounded-full flex items-center justify-center w-[40px] h-[40px] md:hidden">
-            <CloseIcon size={24} strokeWidth={2} color="currentColor" />
+        <div className="bg-neutral-400 rounded-full flex items-center justify-center md:hidden w-8 h-8" onClick={onClick}>
+            <CloseIcon size={24} strokeWidth={2} color="white" />
         </div>
     );
 }

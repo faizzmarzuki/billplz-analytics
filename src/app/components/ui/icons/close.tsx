@@ -7,7 +7,7 @@ interface CloseIconProps {
 
 export const CloseIcon = ({
     color = "currentColor",
-    size = 18,
+    size = 24,
     strokeWidth = 2,
     className,
 }: CloseIconProps) => {
