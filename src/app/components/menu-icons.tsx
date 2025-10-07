@@ -1,7 +1,7 @@
-import { HomeIcon } from "@/components/ui/icons/home";
-import { PayoutIcon } from "@/components/ui/icons/payout";
-import { RedirectIcon } from "@/components/ui/icons/redirect";
-import { SettingsIcon } from "@/components/ui/icons/settings";
+import { HomeIcon } from "@/app/components/ui/icons/bui_home";
+import { PayoutIcon } from "@/app/components/ui/icons/bui_payout";
+import { RedirectIcon } from "@/app/components/ui/icons/bui_redirect";
+import { SettingsIcon } from "@/app/components/ui/icons/bui_settings";
 
 type IconName = "home" | "payout" | "redirect" | "settings";
 

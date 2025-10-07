@@ -1,4 +1,4 @@
-import { CloseIcon } from "@/components/ui/icons/close";
+import { CloseIcon } from "@/app/components/ui/icons/bui_close";
 
 interface CloseButtonProps {
     onClick?: () => void;

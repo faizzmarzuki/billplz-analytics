@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarIcon } from "./ui/icons/calendar";
+import { CalendarIcon } from "./ui/icons/bui_calendar";
 
 interface CalendarFilterProps {
     filterDate?: (range: { start: string; end: string }) => void;
@@ -14,6 +14,7 @@ const filterDateEnum = [
     {
         tag: "Today",
         value: { start: formatDate(now), end: formatDate(now) },
+        compared: "last hour."
     },
     {
         tag: "Last 7 days",
@@ -21,6 +22,7 @@ const filterDateEnum = [
             start: formatDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - 6)),
             end: formatDate(now),
         },
+        compared: "last 7 days."
     },
     {
         tag: "This month",
@@ -28,6 +30,7 @@ const filterDateEnum = [
             start: formatDate(new Date(now.getFullYear(), now.getMonth(), 1)),
             end: formatDate(now),
         },
+        compared: "last month."
     },
     {
         tag: "This year",
@@ -35,6 +38,7 @@ const filterDateEnum = [
             start: formatDate(new Date(now.getFullYear(), 0, 1)),
             end: formatDate(now),
         },
+        compared: "last year."
     },
 ];
 
@@ -51,6 +55,7 @@ export const CalendarFilter = ({ filterDate }: CalendarFilterProps) => {
     return (
         <div className="relative">
             {/* Trigger button */}
+            <span className="text-neutral-500">Compared to previous {selected.compared}</span>
             <div
                 className="flex items-center w-32 gap-2 p-2 bg-neutral-50 rounded-lg border border-neutral-200 cursor-pointer"
                 onClick={() => setOpen(!open)}

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { HamburgerIcon } from "@/app/components/ui/icons/hamburger";
+import { HamburgerIcon } from "@/app/components/ui/icons/bui_hamburger";
 import { CalendarFilter } from "./calendar-filter";
 
 interface HeaderProps {
     title: string;
-    filterDate: (range: string) => void;
+    filterDate?: (range: { start: string; end: string }) => void;
     onMenuClick?: () => void;
 }
 
@@ -21,11 +21,13 @@ export default function Header({ title, filterDate, onMenuClick }: HeaderProps) 
                     className=""
                 />
             </div>
-            <div className="justify-between items-center p-4 hidden md:flex">
+            <div className="flex p-4 flex-col md:flex-row md:justify-between md:items-center">
                 <span className="text-2xl font-bold">{title}</span>
-                <div className="flex items-center gap-2">
-                    <CalendarFilter filterDate={filterDate} />
-                </div>
+                {filterDate && (
+                    <div className="flex items-center gap-2">
+                        <CalendarFilter filterDate={filterDate} />
+                    </div>
+                )}
             </div>
         </div>
     );

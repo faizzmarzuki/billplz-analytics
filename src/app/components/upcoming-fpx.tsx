@@ -1,12 +1,12 @@
 import { Card } from "@/app/components/ui/card";
-import { QuestionMarkCircleIcon } from "@/app/components/ui/icons/question-mark-circle";
+import { QuestionMarkCircleIcon } from "@/app/components/ui/icons/bui_question-mark-circle";
 
 export default function UpcomingFPX() {
 
     const collectionDate = [{ date: "2022-01-01", value: 100 }, { date: "2022-01-02", value: 200 }, { date: "2022-01-03", value: 250 }, { date: "2022-01-04", value: 220 }, { date: "2022-01-05", value: 250 }];
 
     return (
-        <Card className="w-full flex flex-col gap-4">
+        <Card className="w-full flex flex-col gap-4 p-4 rounded-md">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <span>Upcoming FPX Payout</span>

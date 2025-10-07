@@ -7,7 +7,7 @@ import { useState } from "react";
 
 interface LayoutWrapperProps {
     children: React.ReactNode;
-    onFilterDate: (range: string) => void;
+    onFilterDate?: (range: { start: string; end: string }) => void;
 }
 
 const routeTitles: Record<string, string> = {
@@ -27,8 +27,8 @@ export default function LayoutWrapper({ children, onFilterDate }: LayoutWrapperP
             <div className="flex flex-col w-full h-full">
                 <Header
                     title={title}
-                    filterDate={onFilterDate}
-                    onMenuClick={() => setSidebarOpen(true)} // 👈 open sidebar
+                    filterDate={pathname === "/subscription-page" ? undefined : onFilterDate}
+                    onMenuClick={() => setSidebarOpen(true)}
                 />
                 <div className="p-4 flex-1 overflow-y-auto">{children}</div>
             </div>

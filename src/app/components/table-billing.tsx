@@ -1,150 +1,144 @@
+"use client";
+
+import { useState } from "react";
 import {
     Table,
     TableBody,
-    TableCell,
     TableHead,
     TableHeaderCell,
     TableRoot,
     TableRow,
-} from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+    TableCell,
+} from "@/components/ui/table";
+import { CopyIcon } from "@/app/components/ui/icons/bui_copy";
+import { Button } from "./ui/button";
+import { DropdownMenuSimpleExample } from "./actions-dropdown";
 
-export default function TableBilling() {
-    const data: Array<{
-        workspace: string
-        owner: string
-        status: string
-        costs: string
-        region: string
-        capacity: string
-        lastEdited: string
-    }> = [
-            {
-                workspace: "sales_by_day_api",
-                owner: "John Doe",
-                status: "Live",
-                costs: "$3,509.00",
-                region: "US-West 1",
-                capacity: "99%",
-                lastEdited: "23/09/2023 13:00",
-            },
-            {
-                workspace: "marketing_campaign",
-                owner: "Jane Smith",
-                status: "Live",
-                costs: "$5,720.00",
-                region: "US-East 2",
-                capacity: "80%",
-                lastEdited: "22/09/2023 10:45",
-            },
-            {
-                workspace: "test_environment",
-                owner: "David Clark",
-                status: "Inactive",
-                costs: "$800.00",
-                region: "EU-Central 1",
-                capacity: "40%",
-                lastEdited: "25/09/2023 16:20",
-            },
-            {
-                workspace: "sales_campaign",
-                owner: "Jane Smith",
-                status: "Live",
-                costs: "$5,720.00",
-                region: "US-East 2",
-                capacity: "80%",
-                lastEdited: "22/09/2023 10:45",
-            },
-            {
-                workspace: "development_env",
-                owner: "Mike Johnson",
-                status: "Inactive",
-                costs: "$4,200.00",
-                region: "EU-West 1",
-                capacity: "60%",
-                lastEdited: "21/09/2023 14:30",
-            },
-            {
-                workspace: "new_workspace_1",
-                owner: "Alice Brown",
-                status: "Inactive",
-                costs: "$2,100.00",
-                region: "US-West 2",
-                capacity: "75%",
-                lastEdited: "24/09/2023 09:15",
-            },
-        ]
+interface TableBillingProps {
+    data: Array<{
+        id: number;
+        name: string;
+        collectionId: string;
+        totalCollected: string;
+        volume: string;
+        status: string;
+        deltaType: string;
+        hours: number;
+    }>;
+}
+
+export function TableBilling({ data }: TableBillingProps) {
+    const [page, setPage] = useState(1);
+    const [copiedRow, setCopiedRow] = useState<number | null>(null);
+
+    const handleCopy = (id: number, value: string) => {
+        navigator.clipboard.writeText(value);
+        setCopiedRow(id);
+        setTimeout(() => setCopiedRow(null), 1500); // reset after 1.5s
+    };
+    const rowsPerPage = 10;
+
+    // Calculate pagination
+    const startIndex = (page - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const paginatedData = data.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(data.length / rowsPerPage);
 
     return (
         <>
-            <Tabs defaultValue="tab1">
-                <TabsList>
-                    <TabsTrigger value="tab1">Returns</TabsTrigger>
-                    <TabsTrigger value="tab2">Shipping</TabsTrigger>
-                </TabsList>
-                <div className="ml-2 mt-4">
-                    <TabsContent value="tab1" className="space-y-2 text-sm leading-7 text-gray-600 dark:text-gray-500"      >
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableHeaderCell>Workspace</TableHeaderCell>
-                                    <TableHeaderCell>Owner</TableHeaderCell>
-                                    <TableHeaderCell>Status</TableHeaderCell>
-                                    <TableHeaderCell>Region</TableHeaderCell>
-                                    <TableHeaderCell>Capacity</TableHeaderCell>
-                                    <TableHeaderCell className="text-right">Costs</TableHeaderCell>
-                                    <TableHeaderCell className="text-right">
-                                        Last edited
-                                    </TableHeaderCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {data.map((item) => (
-                                    <TableRow key={item.workspace}>
-                                        <TableCell >{item.workspace}</TableCell>
-                                        <TableCell>{item.owner}</TableCell>
-                                        <TableCell>{item.status}</TableCell>
-                                        <TableCell>{item.region}</TableCell>
-                                        <TableCell>{item.capacity}</TableCell>
-                                        <TableCell className="text-right">{item.costs}</TableCell>
-                                        <TableCell className="text-right">{item.lastEdited}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TabsContent>
-                    <TabsContent value="tab2" className="space-y-2 text-sm leading-7 text-gray-600 dark:text-gray-500"      >
-                        {/* <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableHeaderCell>Workspace</TableHeaderCell>
-                                    <TableHeaderCell>Owner</TableHeaderCell>
-                                    <TableHeaderCell>Status</TableHeaderCell>
-                                    <TableHeaderCell>Region</TableHeaderCell>
-                                    <TableHeaderCell>Capacity</TableHeaderCell>
-                                    <TableHeaderCell className="text-right">Costs</TableHeaderCell>
-                                    <TableHeaderCell className="text-right">
-                                        Last edited
-                                    </TableHeaderCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {data.map((item) => (
-                                    <TableRow key={item.workspace}>
-                                        <TableCell >{item.workspace}</TableCell>
-                                        <TableCell>{item.owner}</TableCell>
-                                        <TableCell>{item.status}</TableCell>
-                                        <TableCell>{item.region}</TableCell>
-                                        <TableCell>{item.capacity}</TableCell>
-                                        <TableCell className="text-right">{item.costs}</TableCell>
-                                        <TableCell className="text-right">{item.lastEdited}</TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table> */}
-                    </TabsContent>
-                </div>
-            </Tabs>
+            <TableRoot className="hidden md:block">
+                <Table>
+                    <TableHead className="border-b border-neutral-200">
+                        <TableRow>
+                            <TableHeaderCell>COLLECTION NAME</TableHeaderCell>
+                            <TableHeaderCell className="text-right">
+                                COLLECTION ID
+                            </TableHeaderCell>
+                            <TableHeaderCell className="text-right">
+                                TOTAL COLLECTED
+                            </TableHeaderCell>
+                            <TableHeaderCell className="text-right">VOLUME</TableHeaderCell>
+                            <TableHeaderCell className="text-right">ACTIONS</TableHeaderCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {paginatedData.map((item) => (
+                            <TableRow key={item.id}>
+                                <TableCell>{item.name}</TableCell>
+                                <TableCell className="text-right">
+                                    <div className="flex items-center justify-end gap-2">
+                                        {item.collectionId}
+                                        <div onClick={() => handleCopy(item.id, item.collectionId)}>
+                                            <CopyIcon
+                                                className="cursor-pointer hover:opacity-70"
+                                                color={copiedRow === item.id ? "green" : "black"}
+                                                width={14}
+                                                height={14}
+                                                strokeWidth={1.5}
+                                            />
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell>
+                                    <div className="flex items-center justify-end gap-2"><div className="bg-green-500 w-2 h-2 rounded-full" />
+                                        {item.totalCollected}</div>
+
+                                </TableCell>
+                                <TableCell className="text-right">{item.volume}</TableCell>
+                                <TableCell className="flex justify-end">
+                                    <DropdownMenuSimpleExample collectionId={item.collectionId} />
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableRoot>
+            <div className="space-y-4 md:hidden">
+                {paginatedData.map((item) => (
+                    <div
+                        key={item.id}
+                        className="p-4 bg-white border-b border-neutral-200"
+                    >
+                        <div className="flex justify-between items-center">
+                            <h3 className="font-semibold">{item.name}</h3>
+                            <DropdownMenuSimpleExample collectionId={item.collectionId} />
+                        </div>
+                        <p className="text-sm text-neutral-500 flex items-center gap-2">{item.collectionId}
+                            <div onClick={() => handleCopy(item.id, item.collectionId)}>
+                                <CopyIcon
+                                    className="cursor-pointer hover:opacity-70"
+                                    color={copiedRow === item.id ? "green" : "black"}
+                                    width={14}
+                                    height={14}
+                                    strokeWidth={1.5}
+                                />
+                            </div></p>
+                        <p className="text-sm flex items-center gap-2">
+                            COLLECTED
+                            <div className="bg-green-500 w-2 h-2 rounded-full" />
+                            {item.totalCollected}
+                        </p>
+                        <p className="text-sm text-neutral-700">VOLUME {item.volume}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="flex justify-center gap-4 p-4">
+                <Button
+                    className="w-24 text-neutral-500 bg-white border border-neutral-200 hover:bg-neutral-200 disabled:opacity-50 disabled:bg-neutral-300 disabled:cursor-not-allowed disabled:text-neutral-500"
+                    disabled={page === 1}
+                    onClick={() => setPage((prev) => prev - 1)}
+                >
+                    Previous
+                </Button>
+                <Button
+                    className="w-24 text-neutral-500 bg-white border border-neutral-200 hover:bg-neutral-200 disabled:opacity-50 disabled:bg-neutral-300 disabled:cursor-not-allowed"
+                    disabled={page === totalPages}
+                    onClick={() => setPage((prev) => prev + 1)}
+                >
+                    Next
+                </Button>
+            </div>
         </>
-    )
+    );
 }

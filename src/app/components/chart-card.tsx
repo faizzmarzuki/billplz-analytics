@@ -13,7 +13,7 @@ interface ChartCardProps {
 
 export const ChartCard = ({ title, amount, chartType, data, index, categories }: ChartCardProps) => {
     return (
-        <Card className="w-full">
+        <Card className="w-full p-4 rounded-md">
             <div className="flex justify-between w-full items-center"><span>{title}</span> <span>View All</span></div>
             <div>{amount}</div>
             <div>
