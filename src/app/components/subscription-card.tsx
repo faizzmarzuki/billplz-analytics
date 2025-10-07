@@ -22,10 +22,10 @@ export const SubscriptionCard = ({
 }: SubscriptionCardProps) => {
     return (
         <div className="flex flex-col h-[550px]">
-            <div className={`items-center gap-2 bg-blue-500 text-white px-2 py-1 rounded-t-lg justify-center ${popular ? "flex" : "hidden"}`}>
+            <div className={`items-center gap-2 bg-blue-500 text-white px-2 py-1 w-full rounded-t-lg justify-center ${popular ? "flex" : "hidden"}`}>
                 <span>Popular</span>
             </div>
-            <Card className={`p-6 flex flex-col justify-between flex-1 items-center ${popular ? " border-blue-500 border-2 rounded-b-lg" : "border-neutral-200 border rounded-lg"}`}>
+            <Card className={`p-6 flex flex-col justify-between flex-1 items-center w-full ${popular ? " border-blue-500 border-2 rounded-b-lg" : "border-neutral-200 border rounded-lg"}`}>
                 <div className="flex flex-col gap-2 w-full">
                     <div className={`flex flex-col gap-2 items-center ${popular ? "" : "pt-6"}`}>
                         <span className="text-xl font-bold ">{planName}</span>

@@ -8,6 +8,7 @@ import { useState } from "react";
 interface LayoutWrapperProps {
     children: React.ReactNode;
     onFilterDate?: (range: { start: string; end: string }) => void;
+    title?: string;
 }
 
 const routeTitles: Record<string, string> = {

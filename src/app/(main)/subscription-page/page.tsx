@@ -1,11 +1,6 @@
 "use client"
 
 import { SubscriptionCard } from "@/app/components/subscription-card";
-import { Card } from "@/app/components/ui/card";
-
-const handleSubscribe = (planName: string) => {
-
-}
 
 const plans = [
     {
@@ -29,13 +24,11 @@ const plans = [
 
 export default function SubscriptionPage() {
     return (
-        <div>
-            <span className="text-base text-justify font-light text-neutral-500">Access to our rich analytics data by subscribing to your desired subscription plan.</span>
-            <div className="flex flex-col pt-10 items-center gap-10 md:flex-row md:items-stretch">
+        <div className="flex flex-col gap-5">
+            <span className="text-base text-left font-light text-neutral-500 w-full">Access to our rich analytics data by subscribing to your desired subscription plan.</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 pt-10 items-center md:gap-10 gap-5">
                 {plans.map((plan, index) => (
-                    <div className="w-[300px]">
-                        <SubscriptionCard key={index} planName={plan.planName} price={plan.price} features={plan.features} currentPlan={plan.currentPlan} popular={plan.popular} onClick={() => handleSubscribe(plan.planName)} />
-                    </div>
+                    <SubscriptionCard key={index} planName={plan.planName} price={plan.price} features={plan.features} currentPlan={plan.currentPlan} popular={plan.popular} />
                 ))}
             </div>
         </div>

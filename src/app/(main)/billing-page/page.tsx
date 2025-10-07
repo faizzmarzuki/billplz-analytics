@@ -15,192 +15,8 @@ import CloseButton from "@/app/components/close-icon";
 import React from "react";
 import { DateRangePicker } from "@/app/components/date-picker";
 import { Checkbox } from "@/app/components/ui/checkbox";
-
-const TableDataActive = [{
-    id: 1,
-    name: "Collection 1",
-    collectionId: "113456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 2,
-    name: "Collection 2",
-    collectionId: "223456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 3,
-    name: "Collection 3",
-    collectionId: "333456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 4,
-    name: "Collection 4",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 5,
-    name: "Collection 5",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 6,
-    name: "Collection 6",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 7,
-    name: "Collection 7",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 8,
-    name: "Collection 8",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 9,
-    name: "Collection 9",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 10,
-    name: "Collection 10",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}]
-
-const TableDataInactive = [{
-    id: 11,
-    name: "Collection 11",
-    collectionId: "123456711",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Inactive",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 12,
-    name: "Collection 12",
-    collectionId: "123456722",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 13,
-    name: "Collection 13",
-    collectionId: "123456733",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 14,
-    name: "Collection 14",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 15,
-    name: "Collection 15",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 16,
-    name: "Collection 16",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 17,
-    name: "Collection 17",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 18,
-    name: "Collection 18",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Active",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 19,
-    name: "Collection 19",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Inactive",
-    deltaType: "Up",
-    hours: 24,
-}, {
-    id: 20,
-    name: "Collection 20",
-    collectionId: "123456789",
-    totalCollected: "RM100.00",
-    volume: "100",
-    status: "Inactive",
-    deltaType: "Up",
-    hours: 24,
-}]
-
-const TableDataAll = [...TableDataActive, ...TableDataInactive]
+import { useQuery } from "@tanstack/react-query";
+import { Collection } from "@/app/types/collection";
 
 const books: Book[] = [{ title: "Twenty Thousand Leagues Under the Sea", author: "Jules Verne", year: 1870, genre: "Science Fiction", summary: "The novel chronicles the adventures of Captain Nemo and his submarine, the Nautilus, as seen by Professor Pierre Aronnax. After being captured by the mysterious captain, Aronnax, his servant Conseil, and a Canadian whaler named Ned Land, experience the wonders of the underwater world. Throughout their journey, they encounter various marine life, explore underwater forests, and discover the lost city of Atlantis. They also face dangers, such as giant squids and treacherous underwater tunnels. Ultimately, they must decide whether to remain with Captain Nemo or attempt to escape his obsessive quest for revenge against the surface world.", }, { title: "Journey to the Center of the Earth", author: "Jules Verne", year: 1864, genre: "Science Fiction", summary: "Professor Otto Lidenbrock discovers an ancient manuscript that points to a passage to the center of the Earth. Accompanied by his nephew Axel and their guide, Hans Belker, they embark on an expedition to Iceland to find the entrance to the subterranean world. They descend through volcanic tubes and encounter a series of remarkable underground environments, including vast caverns, subterranean seas, and prehistoric creatures. Along the way, they face numerous challenges and near-death experiences. Their journey is not only a physical adventure but also a scientific quest to understand the Earth's inner layers, ultimately returning to the surface with a wealth of knowledge and a new perspective on the natural world.", }, { title: "Around the World in Eighty Days", author: "Jules Verne", year: 1873, genre: "Adventure", summary: "Phileas Fogg, an English gentleman, wagers that he can circumnavigate the globe in just eighty days. Accompanied by his loyal French valet, Passepartout, Fogg sets off on a whirlwind adventure across various countries and continents. Their journey is filled with obstacles, including delays, natural disasters, and relentless pursuit by a detective named Fix, who mistakenly believes Fogg is a bank robber. Despite these challenges, Fogg remains calm and determined to win the bet. In the end, Fogg's meticulous planning and resourcefulness, along with some unexpected help, allow him to complete the journey just in time, proving that with determination and ingenuity, anything is possible.", }, { title: "The Mysterious Island", author: "Jules Verne", year: 1874, genre: "Adventure", summary: "During the American Civil War, five prisoners escape in a hot air balloon, only to crash on an uncharted island in the Pacific. They must use their ingenuity and knowledge to survive and explore their new home, which they name Lincoln Island. The castaways discover that the island is rich in natural resources, enabling them to build a new society from scratch. They face various challenges, including wild animals, pirates, and mysterious occurrences that suggest they are not alone. Throughout their adventures, they uncover the island's secrets, including the presence of Captain Nemo, who has been living in seclusion. The story highlights themes of survival, cooperation, and the triumph of human spirit and intelligence.", },]
 
@@ -234,7 +50,6 @@ interface Book {
 }
 
 export default function BillingPage() {
-    const [filterDate, setFilterDate] = useState<string | null>(null);
     const [editOpen, showEdit, closeEdit] = useToggleState()
     const [bookToEdit, setBookToEdit] = React.useState<Book | null>(null)
     const editBook = (book: Book) => {
@@ -244,6 +59,24 @@ export default function BillingPage() {
     const onSave = () => {    // update    
         closeEdit()
     }
+
+    // Fetch collections data using TanStack Query
+    const { data: collections, isLoading, isError } = useQuery<Collection[]>({
+        queryKey: ['collections'],
+        queryFn: async () => {
+            const response = await fetch('/api/collections');
+            if (!response.ok) {
+                throw new Error('Failed to fetch collections');
+            }
+            return response.json();
+        },
+    });
+
+    // Filter collections by status
+    const TableDataAll = collections || [];
+    const TableDataActive = collections?.filter(c => c.status === "Active") || [];
+    const TableDataInactive = collections?.filter(c => c.status === "Inactive") || [];
+
     return (
         <div className="flex flex-col gap-5">
             <div className="grid grid-rows-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -285,13 +118,31 @@ export default function BillingPage() {
                             </TabsList>
                         </div>
                         <TabsContent value="all">
-                            <TableBilling data={TableDataAll} />
+                            {isLoading ? (
+                                <div className="p-4 text-center">Loading collections...</div>
+                            ) : isError ? (
+                                <div className="p-4 text-center text-red-500">Error loading collections</div>
+                            ) : (
+                                <TableBilling data={TableDataAll} />
+                            )}
                         </TabsContent>
                         <TabsContent value="inactive">
-                            <TableBilling data={TableDataInactive} />
+                            {isLoading ? (
+                                <div className="p-4 text-center">Loading collections...</div>
+                            ) : isError ? (
+                                <div className="p-4 text-center text-red-500">Error loading collections</div>
+                            ) : (
+                                <TableBilling data={TableDataInactive} />
+                            )}
                         </TabsContent>
                         <TabsContent value="active">
-                            <TableBilling data={TableDataActive} />
+                            {isLoading ? (
+                                <div className="p-4 text-center">Loading collections...</div>
+                            ) : isError ? (
+                                <div className="p-4 text-center text-red-500">Error loading collections</div>
+                            ) : (
+                                <TableBilling data={TableDataActive} />
+                            )}
                         </TabsContent>
                     </Tabs>
                 </Card>

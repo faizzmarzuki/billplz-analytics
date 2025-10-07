@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import LayoutWrapper from "./components/layout-wrapper";
+import QueryProvider from "./providers/query-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="bg-[#F4F8FF]">
-        <LayoutWrapper>{children}</LayoutWrapper>
+        <QueryProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </QueryProvider>
       </body>
     </html>
   );

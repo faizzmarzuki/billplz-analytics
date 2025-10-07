@@ -9,9 +9,10 @@ interface ChartCardProps {
     index: string;
     categories: string[];
     color?: any;
+    isLoading?: boolean;
 }
 
-export const ChartCard = ({ title, chartType, data, index, categories, color }: ChartCardProps) => {
+export const ChartCard = ({ title, chartType, data, index, categories, color, isLoading = false }: ChartCardProps) => {
 
     const countDifference = (data: any[]) => {
         //calculate the difference of current date value compare to previous date value and return is it increase or decrease
@@ -29,7 +30,37 @@ export const ChartCard = ({ title, chartType, data, index, categories, color }: 
 
     const totalAmount = (data: any[]) => {
         if (!data || data.length === 0) return "No data";
-        return data.reduce((acc, curr) => acc + curr.value, 0).toFixed(2);
+        if (title === 'Total Transactions') {
+            return data.reduce((acc, curr) => acc + curr.value, 0);
+        } else {
+            return data.reduce((acc, curr) => acc + curr.value, 0).toFixed(2);
+        }
+
+    }
+
+    if (isLoading) {
+        return (
+            <Card className="w-full p-4 rounded-md">
+                <div className="flex justify-between w-full items-center">
+                    <div className="h-5 w-32 bg-gray-200 rounded animate-pulse"></div>
+                    {chartType === "line" && <div className="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>}
+                </div>
+                <div className={`flex items-center gap-2 mt-2 ${chartType === "line" ? "" : "hidden"}`}>
+                    <div className="h-9 w-40 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-5 w-20 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+                <div className="mt-4">
+                    {chartType === "line" && (
+                        <div className="h-64 w-full bg-gray-200 rounded animate-pulse"></div>
+                    )}
+                    {chartType === "pie" && (
+                        <div className="h-64 w-full flex items-center justify-center">
+                            <div className="h-48 w-48 bg-gray-200 rounded-full animate-pulse"></div>
+                        </div>
+                    )}
+                </div>
+            </Card>
+        );
     }
 
     return (
@@ -39,7 +70,7 @@ export const ChartCard = ({ title, chartType, data, index, categories, color }: 
                 {chartType === "line" && <span className="font-semibold text-blue-500 text-sm hover:underline cursor-pointer">View All</span>}
             </div>
             <div className={`flex items-center gap-2 ${chartType === "line" ? "" : "hidden"}`}>
-                <span className="font-bold text-3xl">{totalAmount(data)}</span>
+                <span className="font-bold text-3xl"><span className={`${title === 'Total Transactions' ? 'hidden' : ''}`}>RM</span> {totalAmount(data)}</span>
                 <span className="font-semibold text-blue-500 text-sm">{countDifference(data)}</span>
             </div>
             <div>

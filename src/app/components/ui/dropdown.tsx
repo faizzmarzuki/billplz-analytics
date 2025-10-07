@@ -11,7 +11,7 @@ import {
     RiRadioButtonFill,
 } from "@remixicon/react"
 
-import { cx } from "@/lib/utils"
+import { cx } from "@/app/lib/utils"
 
 const DropdownMenu = DropdownMenuPrimitives.Root
 DropdownMenu.displayName = "DropdownMenu"

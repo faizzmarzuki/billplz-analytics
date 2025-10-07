@@ -26,9 +26,9 @@ import {
     getYAxisDomain,
     hasOnlyOneValueForKey,
     type AvailableChartColorsKeys,
-} from "@/lib/chartUtils"
-import { useOnWindowResize } from "@/hooks/useOnWindowResize"
-import { cx } from "@/lib/utils"
+} from "@/app/lib/chartUtils"
+import { useOnWindowResize } from "@/app/hooks/useOnWindowResize"
+import { cx } from "@/app/lib/utils"
 
 //#region Legend
 
