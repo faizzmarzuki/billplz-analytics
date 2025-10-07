@@ -3,7 +3,7 @@
 import { ChartCard } from "@/app/components/chart-card";
 import CollectionCard from "@/app/components/collection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
-import TotalPaidCard from "@/app/components/total-paid-card";
+import StatsCard from "@/app/components/stats-card";
 import { TableBilling } from "@/app/components/table-billing";
 import { Card } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
@@ -249,7 +249,6 @@ export default function BillingPage() {
             <div className="grid grid-rows-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <ChartCard
                     title="Total Paid"
-                    amount="RM900.00"
                     chartType="line"
                     data={[
                         { date: "2022-09-01", value: 380 },
@@ -264,8 +263,8 @@ export default function BillingPage() {
                 />
                 <CollectionCard title="Top 5 Performing Collections" />
                 <div className="flex flex-col gap-5">
-                    <TotalPaidCard />
-                    <TotalPaidCard />
+                    <StatsCard title="Total Paid" amount={1300} />
+                    <StatsCard title="Total Collections" amount={12000} />
                 </div>
             </div>
             <div>

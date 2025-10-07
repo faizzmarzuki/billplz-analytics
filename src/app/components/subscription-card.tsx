@@ -1,10 +1,11 @@
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
+import { Divider } from "@/app/components/ui/divider";
 
 interface SubscriptionCardProps {
     planName: string;
-    price: string;
+    price: number;
     features: string[];
     currentPlan?: boolean;
     onClick?: () => void;
@@ -20,19 +21,24 @@ export const SubscriptionCard = ({
     popular,
 }: SubscriptionCardProps) => {
     return (
-        <div className="flex flex-col h-[600px]">
-            <div className={`items-center gap-2 bg-blue-500 text-white px-2 py-1 rounded-t justify-center ${popular ? "flex" : "hidden"}`}>
+        <div className="flex flex-col h-[550px]">
+            <div className={`items-center gap-2 bg-blue-500 text-white px-2 py-1 rounded-t-lg justify-center ${popular ? "flex" : "hidden"}`}>
                 <span>Popular</span>
             </div>
-            <Card className={`p-6 flex flex-col justify-between flex-1 items-center ${popular ? " border-blue-500 border-2 rounded-b" : "border-neutral-200 border rounded"}`}>
-                <span className="text-xl font-semibold">{planName}</span>
-                <span className="text-2xl font-semibold">{price}</span>
-                <span className="text-sm">per month</span>
+            <Card className={`p-6 flex flex-col justify-between flex-1 items-center ${popular ? " border-blue-500 border-2 rounded-b-lg" : "border-neutral-200 border rounded-lg"}`}>
                 <div className="flex flex-col gap-2 w-full">
-                    <span>ACCESS TO</span>
-                    {features.map((feature) => (
-                        <span key={feature}>{feature}</span>
-                    ))}
+                    <div className={`flex flex-col gap-2 items-center ${popular ? "" : "pt-6"}`}>
+                        <span className="text-xl font-bold ">{planName}</span>
+                        <span className="text-2xl font-bold text-blue-500">RM {price}</span>
+                        <span className="text-sm text-blue-500 font-light">per month</span>
+                    </div>
+                    <Divider />
+                    <div className="flex flex-col gap-2 w-full">
+                        <span className="font-semibold text-neutral-500">ACCESS TO</span>
+                        {features.map((feature) => (
+                            <span key={feature} className="text-sm font-normal text-neutral-500">{feature}</span>
+                        ))}
+                    </div>
                 </div>
                 <Dialog>
                     <DialogTrigger asChild>

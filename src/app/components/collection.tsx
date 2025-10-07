@@ -30,7 +30,7 @@ export default function CollectionCard({ title }: CollectionProps) {
 
     return (
         <Card className="p-4 rounded-md">
-            <h1>{title}</h1>
+            <h1 className="font-bold">{title}</h1>
             {data.map((item, index) => (
                 <CollectionProgress key={index} title={item.collectionTitle} amount={item.amount} percentage={item.percentage} />
             ))}

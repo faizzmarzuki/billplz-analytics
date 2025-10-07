@@ -1,14 +1,13 @@
 import { Chart } from "react-google-charts";
 
-export default function PieChart() {
-    const data = [
-        ["Task", "Hours per Day"],
-        ["Work", 11],
-        ["Eat", 2],
-    ];
+interface PieChartProps {
+    data: any;
+    color: string[];
+}
+
+export default function PieChart({ data, color }: PieChartProps) {
 
     const options = {
-        title: "My Daily Activities",
         pieHole: 0.4, // Creates a Donut Chart. Does not do anything when is3D is enabled
         is3D: true, // Enables 3D view
         // slices: {
@@ -24,7 +23,7 @@ export default function PieChart() {
                 fontSize: 14,
             },
         },
-        colors: ["#3784F4", "#E8E8E8"],
+        colors: color,
     };
     return (
         <Chart

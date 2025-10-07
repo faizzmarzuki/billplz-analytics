@@ -1,36 +1,38 @@
 import { Card } from "@/app/components/ui/card";
 import { QuestionMarkCircleIcon } from "@/app/components/ui/icons/bui_question-mark-circle";
 
-export default function UpcomingFPX() {
+interface CollectionDate {
+    data: any[];
+}
 
-    const collectionDate = [{ date: "2022-01-01", value: 100 }, { date: "2022-01-02", value: 200 }, { date: "2022-01-03", value: 250 }, { date: "2022-01-04", value: 220 }, { date: "2022-01-05", value: 250 }];
+export default function UpcomingFPX({ data }: CollectionDate) {
 
     return (
-        <Card className="w-full flex flex-col gap-4 p-4 rounded-md">
+        <Card className="w-full flex flex-col p-4 rounded-md">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                    <span>Upcoming FPX Payout</span>
+                    <span className="font-bold">Upcoming FPX Payout</span>
                     <QuestionMarkCircleIcon color={`oklch(62.3% 0.214 259.815)`} />
                 </div>
-                <span>See Details</span>
+                <span className="font-semibold text-blue-500 text-sm hover:underline cursor-pointer">See Details</span>
             </div>
-            <div className="flex flex-col gap-2">
-                <span>RM 1,200.00</span>
-                <span>Expected to reach your bank account on 12 Sept 2021</span>
+            <div className="flex flex-col gap-2 pb-4">
+                <span className="font-bold text-3xl">RM 1,200.00</span>
+                <span className="text-sm text-neutral-500">Expected to reach your bank account on 12 Sept 2021</span>
             </div>
             <div
-                className="w-full border-t border-transparent"
+                className="w-full border-t border-transparent pb-4"
                 style={{
                     borderImage: "repeating-linear-gradient(to right, #d4d4d4 0, #d4d4d4 10px, transparent 10px, transparent 20px) 1",
                 }}
             />
             <div>
-                <span>COLLECTION DATE</span>
-                <div className="flex flex-col gap-2">
-                    {collectionDate.map((item, index) => (
+                <span className="font-semibold text-neutral-500">COLLECTION DATE</span>
+                <div className="flex flex-col gap-2 pt-2">
+                    {data.map((item, index) => (
                         <div key={index} className="flex items-center justify-between">
                             <span>{item.date}</span>
-                            <span>RM{item.value}</span>
+                            <span className="font-semibold">RM{item.value}</span>
                         </div>
                     ))}
                 </div>
