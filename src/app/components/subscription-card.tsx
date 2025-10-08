@@ -4,24 +4,24 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { Divider } from "@/app/components/ui/divider";
 
 interface SubscriptionCardProps {
-    planName: string;
-    price: number;
-    features: string[];
-    currentPlan?: boolean;
-    onClick?: () => void;
-    popular?: boolean;
+  planName: string;
+  price: number;
+  features: string[];
+  currentPlan?: boolean;
+  onClick?: () => void;
+  popular?: boolean;
 }
 
 export const SubscriptionCard = ({
-    planName,
-    price,
-    features,
-    currentPlan,
-    onClick,
-    popular,
+  planName,
+  price,
+  features,
+  currentPlan,
+  onClick,
+  popular
 }: SubscriptionCardProps) => {
-    return (
-        <div className="flex flex-col h-[550px]">
+  return (
+    <div className="flex flex-col h-[550px]">
             <div className={`items-center gap-2 bg-blue-500 text-white px-2 py-1 w-full rounded-t-lg justify-center ${popular ? "flex" : "hidden"}`}>
                 <span>Popular</span>
             </div>
@@ -35,9 +35,9 @@ export const SubscriptionCard = ({
                     <Divider />
                     <div className="flex flex-col gap-2 w-full">
                         <span className="font-semibold text-neutral-500">ACCESS TO</span>
-                        {features.map((feature) => (
-                            <span key={feature} className="text-sm font-normal text-neutral-500">{feature}</span>
-                        ))}
+                        {features.map((feature) =>
+            <span key={feature} className="text-sm font-normal text-neutral-500">{feature}</span>
+            )}
                     </div>
                 </div>
                 <Dialog>
@@ -62,6 +62,6 @@ export const SubscriptionCard = ({
                     </DialogContent>
                 </Dialog>
             </Card>
-        </div>
-    );
+        </div>);
+
 };

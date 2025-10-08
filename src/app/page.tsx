@@ -3,6 +3,6 @@ import OverviewPage from "./(main)/overview-page/page";
 
 export default function Home() {
   return (
-    <OverviewPage />
-  );
+    <OverviewPage />);
+
 }
